@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<script>
+pdb_file = "JMJD2DA-x336_event2.pdb"
+map_file = "JMJD2DA-x336_event2.ccp4"
+ligSele = "LIG"
+</script>
+
+    <script src="ngl.js"></script>
+    <script>
+var sview;        
+document.addEventListener( "DOMContentLoaded", function() {
+    var stage = new NGL.Stage("viewport");
+
+    Promise.all([
+        stage.loadFile(pdb_file),
+        stage.loadFile(map_file)
+    ]).then(function (oList) {
+
+        var comp = oList[0];
+        var o = oList[1];
+        var sele = new NGL.Selection(ligSele);
+        comp.addRepresentation("cartoon");
+        comp.addRepresentation("ball+stick",{sele:"LIG"});
+        var sview = comp.structure.getView(sele);
+            o.addRepresentation( "surface", {
+                wireframe: true,
+                color: "skyblue",
+                boxSize: 10
+            } );
+        comp.centerView(true, ligSele);
+    });
+});
+
+
+    </script>
+    <div id="viewport" style="width:400px; height:300px;"></div>
+</body>
+</html>
