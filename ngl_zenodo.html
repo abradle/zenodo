@@ -26,14 +26,13 @@ document.addEventListener( "DOMContentLoaded", function() {
         var o = oList[1];
         var sele = new NGL.Selection(ligSele);
         comp.addRepresentation("cartoon");
-        comp.addRepresentation("ball+stick",{sele:"LIG"});
+        comp.addRepresentation("ball+stick",{sele:ligSele});
         var sview = comp.structure.getView(sele);
         o.addRepresentation( "surface", {
             wireframe: true,
             color: "skyblue",
             boxSize: 10
             } );
-        o.centerView();
 
         var position = new NGL.Vector3();
         function getCenterArray(){
@@ -58,7 +57,6 @@ document.addEventListener( "DOMContentLoaded", function() {
                 } );
             }
         );
-
         comp.centerView(true, ligSele);
     });
 });
