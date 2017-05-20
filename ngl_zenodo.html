@@ -4,15 +4,12 @@
     <meta charset="utf-8">
 </head>
 <body>
-<div id="viewport" style="width:400px; height:400px;"></div>
 
 <script>
     // Just fix these for each page
     var data_base = "JMJD2DA-x336_event2"
     // Not sure if this is correct
     var lig_sele = "LIG"
-
-
     // The directory to get the zenodo information out from
     var zenodo_dir = "https://zenodo.org/record/239039/files/"
 </script>
@@ -26,6 +23,14 @@ NGL.DatasourceRegistry.add(
 
 
 function create_view(div_name,event_name,lig_name) {
+
+
+var div = document.createElement(div_name);
+div.style.width = "400px";
+div.style.height = "400px";
+document.body.appendChild(div);
+
+
 // Create NGL Stage object
 var stage = new NGL.Stage(div_name);
 
@@ -66,6 +71,4 @@ Promise.all( [
 };
 create_view("viewport",data_base,lig_sele);
     </script>
-    <div id="viewport" style="width:400px; height:300px;"></div>
-</body>
 </html>
