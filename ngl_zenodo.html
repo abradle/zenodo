@@ -8,10 +8,7 @@
 
 <script>
     // Just fix these for each page
-    var data_base = "JMJD2DA-x336_event2"//"https://zenodo.org/record/239039/files/JMJD2DA-x395_event1"
-    // Then add the extensions
-    var pdb_file = data_base+".pdb"
-    var map_file = data_base+".ccp4"
+    var data_base = "JMJD2DA-x336_event2"
     // Not sure if this is correct
     var ligSele = "LIG"
 </script>
@@ -20,7 +17,7 @@
     <script>
 // Setup to load data from rawgit
 NGL.DatasourceRegistry.add(
-    "data", new NGL.StaticDatasource( "//cdn.rawgit.com/arose/ngl/v0.10.0-dev.24/data/" )
+    "data", new NGL.StaticDatasource( "https://zenodo.org/record/239039/files/JMJD2DA-x395_event1" )
 );
 
 // Create NGL Stage object
@@ -36,7 +33,7 @@ window.addEventListener( "resize", function( event ){
 
 Promise.all( [
 
-    stage.loadFile( "data://JMJD2DA-x336_event2.ccp4.gz" ),
+    stage.loadFile( "data://JMJD2DA-x336_event2.ccp4" ),
     stage.loadFile( "data://JMJD2DA-x336_event2.pdb" )
 
 ] ).then( function( ol ){
