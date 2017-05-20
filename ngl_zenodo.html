@@ -11,15 +11,21 @@
     var data_base = "JMJD2DA-x336_event2"
     // Not sure if this is correct
     var ligSele = "LIG"
+
+
+    // The directory to get the zenodo information out from
+    var zenodo_dir = "https://zenodo.org/record/239039/files/"
 </script>
 
     <script src="ngl.js"></script>
     <script>
-// Setup to load data from rawgit
+// Setup to load data from zenodo
 NGL.DatasourceRegistry.add(
-    "data", new NGL.StaticDatasource( "https://zenodo.org/record/239039/files/" )
+    "data", new NGL.StaticDatasource( zenodo )
 );
 
+
+function create_view(div_name) {
 // Create NGL Stage object
 var stage = new NGL.Stage( "viewport" );
 
@@ -33,8 +39,8 @@ window.addEventListener( "resize", function( event ){
 
 Promise.all( [
 
-    stage.loadFile( "data://JMJD2DA-x336_event2.ccp4" ),
-    stage.loadFile( "data://JMJD2DA-x336_event2.pdb" )
+    stage.loadFile( "data://"+data_base+".ccp4" ),
+    stage.loadFile( "data://"+data_base+".pdb" )
 
 ] ).then( function( ol ){
 
@@ -57,7 +63,9 @@ Promise.all( [
     stage.setFocus( 95 );
 
 } );
-
+};
+var div_name = "";
+create_view(div_name);
     </script>
     <div id="viewport" style="width:400px; height:300px;"></div>
 </body>
