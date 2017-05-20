@@ -25,7 +25,8 @@ NGL.DatasourceRegistry.add(
 function create_view(div_name,event_name,lig_name) {
 
 
-var div = document.createElement(div_name);
+var div = document.createElement("div");
+div.id = div_name;
 div.style.width = "400px";
 div.style.height = "400px";
 document.body.appendChild(div);
