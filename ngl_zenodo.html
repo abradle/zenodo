@@ -25,9 +25,9 @@ NGL.DatasourceRegistry.add(
 );
 
 
-function create_view(div_name) {
+function create_view(div_name,event_name,lig_name) {
 // Create NGL Stage object
-var stage = new NGL.Stage( "viewport" );
+var stage = new NGL.Stage( "div_name" );
 
 // Handle window resizing
 window.addEventListener( "resize", function( event ){
@@ -39,15 +39,15 @@ window.addEventListener( "resize", function( event ){
 
 Promise.all( [
 
-    stage.loadFile( "data://"+data_base+".ccp4" ),
-    stage.loadFile( "data://"+data_base+".pdb" )
+    stage.loadFile( "data://"+event_name+".ccp4" ),
+    stage.loadFile( "data://"+event_name+".pdb" )
 
 ] ).then( function( ol ){
 
     var map = ol[ 0 ];
     var struc = ol[ 1 ];
 
-    struc.autoView( "LIG" )
+    struc.autoView(lig_name)
 
     map.addRepresentation( "surface", {
         boxSize: 10,
@@ -64,8 +64,7 @@ Promise.all( [
 
 } );
 };
-var div_name = "";
-create_view(div_name);
+create_view("viewport",data_base,lig_sele);
     </script>
     <div id="viewport" style="width:400px; height:300px;"></div>
 </body>
