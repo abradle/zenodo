@@ -8,6 +8,8 @@
 <script>
     // Just fix these for each page
     var data_base = "JMJD2DA-x336_event2"
+    var data_base_2 = "JMJD2DA-x365_event2"
+
     // Not sure if this is correct
     var lig_sele = "LIG"
     // The directory to get the zenodo information out from
@@ -71,5 +73,7 @@ Promise.all( [
 } );
 };
 create_view("viewport",data_base,lig_sele);
+create_view("viewport2",data_base_2,lig_sele);
+
     </script>
 </html>
