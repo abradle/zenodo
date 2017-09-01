@@ -6,6 +6,10 @@
 <body>
 <script src="ngl.js"></script>
 <script src="create_view.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
     <script>
     // Just fix these for each page
     var data_base = "JMJD2DA-x336_event2"
@@ -18,9 +22,13 @@
     //NGL.DatasourceRegistry.add(
     //    "data", new NGL.StaticDatasource( zenodo_dir )
     //);
+    
     // Create the views
+$(document).ready(function() {
     create_view("viewport",data_base,lig_sele,zenodo_dir);
     create_view("viewport2",data_base_2,lig_sele,zenodo_dir);
+
+})
     </script>
 
 <div id="viewport" style="width:400px;height:400px"></div>
