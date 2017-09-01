@@ -15,12 +15,12 @@
     // The directory to get the zenodo information out from
     var zenodo_dir = "https://zenodo.org/record/239039/files/"
     // Setup to load data from zenodo
-    NGL.DatasourceRegistry.add(
-        "data", new NGL.StaticDatasource( zenodo_dir )
-    );
+    //NGL.DatasourceRegistry.add(
+    //    "data", new NGL.StaticDatasource( zenodo_dir )
+    //);
     // Create the views
-    create_view("viewport",data_base,lig_sele);
-    create_view("viewport2",data_base_2,lig_sele);
+    create_view("viewport",data_base,lig_sele,zenodo_dir);
+    create_view("viewport2",data_base_2,lig_sele,zenodo_dir);
     </script>
 
 <div id="viewport" style="width:400px;height:400px"></div>

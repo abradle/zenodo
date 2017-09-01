@@ -1,4 +1,4 @@
-function create_view(div_name,event_name,lig_name) {
+function create_view(div_name,event_name,lig_name,zenodo_dir) {
 // Create NGL Stage object
 var stage = new NGL.Stage(div_name);
 // Handle window resizing
@@ -7,8 +7,11 @@ window.addEventListener( "resize", function( event ){
 }, false );
 // Code for example: test/map-shift
 Promise.all( [
-    stage.loadFile( "data://"+event_name+".ccp4" ),
-    stage.loadFile( "data://"+event_name+".pdb" )
+    //stage.loadFile( "data://"+event_name+".ccp4" ),
+    //stage.loadFile( "data://"+event_name+".pdb" )
+    stage.loadFile( zenodo_dir+event_name+".ccp4" ),
+    stage.loadFile( zenodo_dir+event_name+".pdb" ),
+
 ] ).then( function( ol ){
     var map = ol[ 0 ];
     var struc = ol[ 1 ];
