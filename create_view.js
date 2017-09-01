@@ -1,7 +1,3 @@
-/ Setup to load data from zenodo
-NGL.DatasourceRegistry.add(
-    "data", new NGL.StaticDatasource( zenodo_dir )
-);
 function create_view(div_name,event_name,lig_name) {
 // Create NGL Stage object
 var stage = new NGL.Stage(div_name);
