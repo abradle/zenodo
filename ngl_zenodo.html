@@ -4,8 +4,10 @@
     <meta charset="utf-8">
 </head>
 <body>
+<script src="ngl.js"></script>
+<script src="create_view.js"></script>
+    <script>
 
-<script>
     // Just fix these for each page
     var data_base = "JMJD2DA-x336_event2"
     var data_base_2 = "JMJD2DA-x365_event2"
@@ -14,75 +16,12 @@
     var lig_sele = "LIG"
     // The directory to get the zenodo information out from
     var zenodo_dir = "https://zenodo.org/record/239039/files/"
-</script>
 
-    <script src="ngl.js"></script>
-    <script>
-// Setup to load data from zenodo
-NGL.DatasourceRegistry.add(
-    "data", new NGL.StaticDatasource( zenodo_dir )
-);
-
-
-function create_view(div_name,event_name,lig_name) {
-
-
-var div = document.createElement("div");
-div.id = div_name;
-div.style.width = "400px";
-div.style.height = "400px";
-document.body.appendChild(div);
-
-
-// Create NGL Stage object
-var stage = new NGL.Stage(div_name);
-
-// Handle window resizing
-window.addEventListener( "resize", function( event ){
-    stage.handleResize();
-}, false );
-
-
-// Code for example: test/map-shift
-
-Promise.all( [
-
-    stage.loadFile( "data://"+event_name+".ccp4" ),
-    stage.loadFile( "data://"+event_name+".pdb" )
-
-] ).then( function( ol ){
-
-    var map = ol[ 0 ];
-    var struc = ol[ 1 ];
-
-    struc.autoView(lig_name)
-
-    var surfRepr = map.addRepresentation( "surface", {
-        boxSize: 10,
-        useWorker: false,
-        wrap: true,
-        color: "skyblue",
-        contour: true
-    } );
-
-    struc.addRepresentation( "cartoon" );
-    struc.addRepresentation( "ball+stick", { sele: "hetero" } );
-
-    stage.setFocus( 95 );
-
-    stage.mouseObserver.signals.scrolled.add( function( delta ){
-        if( stage.mouseObserver.altKey ){
-            var d = Math.sign( delta ) / 5;
-            var l = surfRepr.getParameters().isolevel;
-            surfRepr.setParameters( { isolevel: l + d } );
-        }
-    } );
-
-} );
-};
-create_view("viewport",data_base,lig_sele);
-
-create_view("viewport2",data_base_2,lig_sele);
-
+    create_view("viewport",data_base,lig_sele);
+    create_view("viewport2",data_base_2,lig_sele);
     </script>
+
+<div id="viewport" style="width:400px;height:400px"></div>
+<div id="viewport2" style="width:400px;height:400px"></div>
+
 </html>
